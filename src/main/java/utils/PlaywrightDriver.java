@@ -2,7 +2,6 @@ package utils;
 
 import com.microsoft.playwright.*;
 import core.ConfigReader;
-import utils.LogUtils;
 
 public class PlaywrightDriver {
 
