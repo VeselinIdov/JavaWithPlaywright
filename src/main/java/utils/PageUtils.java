@@ -34,4 +34,35 @@ public class PageUtils {
         page.evaluate("document.querySelector('" + locator + "').scrollIntoView();");
         LogUtils.logInfo("Scrolled to element with locator: " + locator);
     }
+
+    public void performDoubleClick(String selector) {
+        LogUtils.logInfo("Performing double click on element: " + selector);
+        page.dblclick(selector);
+    }
+
+    public void acceptAlert() {
+        LogUtils.logInfo("Accepting alert");
+        page.waitForPopup(() -> page.click("text=OK"));
+    }
+
+    public void cancelAlert() {
+        LogUtils.logInfo("Dismissing alert");
+        page.waitForPopup(() -> page.click("text=Cancel"));
+    }
+
+    public void sendKeysToAlertAndAccept(String text) {
+        LogUtils.logInfo("SendKeys to alert with text and accept it");
+        page.fill("[role=alert]", text);
+        page.click("text=OK");
+    }
+
+    public void switchToFrame(String index) {
+        LogUtils.logInfo("Switching to frame with index: " + index);
+        page.frame(index);
+    }
+
+    public void switchToDefaultContent() {
+        LogUtils.logInfo("Switching to default content");
+        page.frame(null);
+    }
 }
