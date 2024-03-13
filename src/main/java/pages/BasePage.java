@@ -1,6 +1,7 @@
 package pages;
 
 import com.microsoft.playwright.Page;
+import core.Environments;
 import utils.LogUtils;
 import utils.PageUtils;
 import utils.PlaywrightDriver;
@@ -11,10 +12,10 @@ public abstract class BasePage {
 
     protected BasePage() {
         PlaywrightDriver playwrightDriver = PlaywrightDriver.getInstance();
-        playwrightDriver.setupBrowser("chromium");
+        playwrightDriver.setupBrowser();
         this.page = playwrightDriver.getPage();
         pageUtils = new PageUtils(page);
-        this.page.navigate("https://demoqa.com/login");
+        this.page.navigate(Environments.switchEnvironment("qa"));
         LogUtils.logInfo("BasePage initialized successfully.");
 
     }

@@ -1,3 +1,5 @@
+import core.ConfigReader;
+import core.Environments;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.BaseTest;
@@ -23,5 +25,10 @@ public class TestsExample extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.enterUserData("test123", "12345");
         loginPage.clickLoginButton();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Environments.switchEnvironment("qa"));
+        System.out.println(ConfigReader.getValue("url.qa"));
     }
 }
