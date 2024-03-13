@@ -2,6 +2,7 @@ package utils;
 
 import com.microsoft.playwright.*;
 import core.ConfigReader;
+import utils.LogUtils;
 
 public class PlaywrightDriver {
 
@@ -29,7 +30,7 @@ public class PlaywrightDriver {
             switch (browserType.toLowerCase()) {
                 case "chromium":
                     LogUtils.logInfo("Launching Chromium browser...");
-                    browser = THREAD_LOCAL_PLAYWRIGHT.get().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+                    browser = THREAD_LOCAL_PLAYWRIGHT.get().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("chrome"));
                     break;
                 case "firefox":
                     LogUtils.logInfo("Launching Firefox browser...");
@@ -39,8 +40,9 @@ public class PlaywrightDriver {
                     LogUtils.logError("Invalid browser type: " + browserType);
                     throw new IllegalArgumentException("Invalid browser type: " + browserType);
             }
-            BrowserContext context = browser.newContext();
-            page = context.newPage();
+            // Maximize the browser window
+            page = browser.newPage(new Browser.NewPageOptions().setViewportSize(1920, 1080));
+            page.evaluate("window.moveTo(0, 0); window.resizeTo(screen.width, screen.height);");
         }
     }
 
