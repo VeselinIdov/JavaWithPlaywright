@@ -3,17 +3,16 @@ package utils;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public class BaseTest {
-
-    private static final PlaywrightDriver playwrightDriver = PlaywrightDriver.getInstance();
+public abstract class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        playwrightDriver.setupBrowser("chromium");
+        LogUtils.logInfo("Starting test execution...");
     }
 
     @AfterMethod
     public void tearDown() {
-        playwrightDriver.close();
+        PlaywrightDriver.getInstance().close();
+        LogUtils.logInfo("Test execution completed.");
     }
 }

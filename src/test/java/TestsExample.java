@@ -9,7 +9,6 @@ public class TestsExample extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.enterUserData("test123", "12345");
         loginPage.clickLoginButton();
-        loginPage.assertButton();
     }
 
     @Test
@@ -17,7 +16,6 @@ public class TestsExample extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.enterUserData("test123", "12345");
         loginPage.clickLoginButton();
-        loginPage.assertButton();
     }
 
     @Test
@@ -25,6 +23,5 @@ public class TestsExample extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.enterUserData("test123", "12345");
         loginPage.clickLoginButton();
-        loginPage.assertButton();
     }
 }

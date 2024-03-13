@@ -19,8 +19,4 @@ public class LoginPage extends BasePage {
         pageUtils.clickElement(LOGIN_BUTTON);
         System.out.println(pageUtils.getElementText(LOGIN_BUTTON));
     }
-
-    public void assertButton() {
-        // Add assertions here
-    }
 }
