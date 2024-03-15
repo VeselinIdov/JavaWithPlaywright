@@ -1,6 +1,7 @@
 package pages;
 
 import com.microsoft.playwright.Page;
+import core.ConfigReader;
 import core.Environments;
 import utils.LogUtils;
 import utils.PageUtils;
@@ -15,7 +16,7 @@ public abstract class BasePage {
         playwrightDriver.setupBrowser();
         this.page = playwrightDriver.getPage();
         pageUtils = new PageUtils(page);
-        this.page.navigate(Environments.switchEnvironment("qa"));
+        this.page.navigate(Environments.switchEnvironment(ConfigReader.getValue("current.env")));
         LogUtils.logInfo("BasePage initialized successfully.");
 
     }
