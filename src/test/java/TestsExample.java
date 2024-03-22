@@ -1,5 +1,4 @@
-import core.ConfigReader;
-import core.Environments;
+import api.BaseRequest;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.BaseTest;
@@ -28,7 +27,6 @@ public class TestsExample extends BaseTest {
     }
 
     public static void main(String[] args) {
-        System.out.println(Environments.switchEnvironment("qa"));
-        System.out.println(ConfigReader.getValue("url.qa"));
+        System.out.println(BaseRequest.sendGetRequest("String","api/users/2"));
     }
 }

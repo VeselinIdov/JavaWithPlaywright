@@ -1,4 +1,5 @@
 package pages;
+
 public class LoginPage extends BasePage {
 
     private static final String CONSENT = "//button[@aria-label='Consent']";
