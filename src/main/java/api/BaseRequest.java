@@ -6,6 +6,7 @@ import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.RequestOptions;
 import utils.PlaywrightDriver;
+
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 
@@ -38,12 +39,13 @@ public class BaseRequest {
         return request.get(path);
     }
 
-    public static APIResponse sendPostRequest(String path, String data) {
-        APIResponse deletedRepo = null;
+    public static APIResponse sendPostRequest(String token, String path, String data) {
+        createAPIRequestContext(token);
+        APIResponse apiResponse = null;
         if (request != null) {
-            deletedRepo = request.post(path, RequestOptions.create().setData(data));
+            apiResponse = request.post(path, RequestOptions.create().setData(data));
         }
-        return deletedRepo;
+        return apiResponse;
     }
 
     void disposeAPIRequestContext() {

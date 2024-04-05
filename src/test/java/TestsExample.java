@@ -1,4 +1,4 @@
-import api.BaseRequest;
+import api.controllers.UserController;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.BaseTest;
@@ -41,6 +41,6 @@ public class TestsExample extends BaseTest {
     }
 
     public static void main(String[] args) {
-        System.out.println(BaseRequest.sendGetRequest("String","api/users/2"));
+        System.out.println(UserController.getUsers("token"));
     }
 }
