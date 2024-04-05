@@ -12,7 +12,7 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        PlaywrightDriver.getInstance().close();
+        PlaywrightDriver.close();
         LogUtils.logInfo("Test execution completed.");
     }
 }

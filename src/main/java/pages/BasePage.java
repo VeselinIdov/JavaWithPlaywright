@@ -12,12 +12,11 @@ public abstract class BasePage {
     protected PageUtils pageUtils;
 
     protected BasePage() {
-        PlaywrightDriver playwrightDriver = PlaywrightDriver.getInstance();
+        PlaywrightDriver playwrightDriver = new PlaywrightDriver();
         playwrightDriver.setupBrowser();
         this.page = playwrightDriver.getPage();
-        pageUtils = new PageUtils(page);
+        this.pageUtils = new PageUtils(page);
         this.page.navigate(Environments.switchEnvironment(ConfigReader.getValue("current.env")));
         LogUtils.logInfo("BasePage initialized successfully.");
-
     }
 }

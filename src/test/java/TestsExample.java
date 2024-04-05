@@ -26,6 +26,20 @@ public class TestsExample extends BaseTest {
         loginPage.clickLoginButton();
     }
 
+    @Test
+    public void test42() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.enterUserData("test123", "12345");
+        loginPage.clickLoginButton();
+    }
+
+    @Test
+    public void test452() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.enterUserData("test123", "12345");
+        loginPage.clickLoginButton();
+    }
+
     public static void main(String[] args) {
         System.out.println(BaseRequest.sendGetRequest("String","api/users/2"));
     }
