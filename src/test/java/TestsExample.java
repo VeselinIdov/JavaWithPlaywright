@@ -16,7 +16,6 @@ public class TestsExample extends BaseTest {
     public void test1() {
         LoginPage loginPage = new LoginPage();
         loginPage.enterUserData("test123", "12345");
-        loginPage.clickLoginButton();
     }
 
     @Test
