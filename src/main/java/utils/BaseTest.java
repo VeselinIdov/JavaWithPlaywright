@@ -1,5 +1,6 @@
 package utils;
 
+import api.BaseRequest;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -13,6 +14,7 @@ public abstract class BaseTest {
     @AfterMethod
     public void tearDown() {
         PlaywrightDriver.close();
+        BaseRequest.disposeAPIRequestContext();
         LogUtils.logInfo("Test execution completed.");
     }
 }

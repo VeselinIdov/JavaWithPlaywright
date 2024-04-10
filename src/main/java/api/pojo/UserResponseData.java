@@ -1,10 +1,14 @@
 package api.pojo;
 
-public class UserResponse {
+import lombok.Getter;
+
+@Getter
+public class UserResponseData {
     private Data data;
     private Support support;
 
-    private static class Data {
+    @Getter
+    public static class Data {
         private int id;
         private String email;
         private String first_name;
@@ -12,7 +16,8 @@ public class UserResponse {
         private String avatar;
     }
 
-    private static class Support {
+    @Getter
+    public static class Support {
         private String url;
         private String text;
     }

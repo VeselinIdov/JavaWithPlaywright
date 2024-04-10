@@ -18,6 +18,5 @@ public class LoginPage extends BasePage {
 
     public void clickLoginButton() {
         pageUtils.clickElement(LOGIN_BUTTON);
-        System.out.println(pageUtils.getElementText(LOGIN_BUTTON));
     }
 }
