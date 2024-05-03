@@ -26,7 +26,7 @@ public class ConfigReader {
     public static String getValue(String key) {
         String value = properties.getProperty(key);
         if (value == null) {
-            LogUtils.logInfo("Value for key '" + key + "' not found in configuration.");
+            LogUtils.logError("Value for key '" + key + "' not found in configuration.");
         }
         return value;
     }

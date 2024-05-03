@@ -12,18 +12,26 @@ public class PlaywrightDriver {
     public void setupBrowser() {
         String browserType = ConfigReader.getValue("browser");
         if (browserType == null) {
-            throw new IllegalArgumentException("Browser type is not specified in the configuration.");
+            String errorMessage = "Browser type is not specified in the configuration.";
+            LogUtils.logError(errorMessage);
+            throw new IllegalArgumentException(errorMessage);
         }
 
-        switch (browserType.toLowerCase()) {
-            case "chromium" ->
-                    THREAD_LOCAL_BROWSER.set(THREAD_LOCAL_PLAYWRIGHT.get().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("chrome")));
-            case "firefox" ->
-                    THREAD_LOCAL_BROWSER.set(THREAD_LOCAL_PLAYWRIGHT.get().firefox().launch(new BrowserType.LaunchOptions().setHeadless(false)));
-            default -> throw new IllegalArgumentException("Invalid browser type: " + browserType);
+        try {
+            switch (browserType.toLowerCase()) {
+                case "chromium" ->
+                        THREAD_LOCAL_BROWSER.set(THREAD_LOCAL_PLAYWRIGHT.get().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("chrome")));
+                case "firefox" ->
+                        THREAD_LOCAL_BROWSER.set(THREAD_LOCAL_PLAYWRIGHT.get().firefox().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+                default -> throw new IllegalArgumentException("Invalid browser type: " + browserType);
+            }
+            maximizeBrowser();
+            LogUtils.logInfo("Browser launched: " + browserType);
+        } catch (PlaywrightException e) {
+            String errorMessage = "Error while launching browser: " + e.getMessage();
+            LogUtils.logError(errorMessage);
+            throw new RuntimeException(errorMessage, e);
         }
-        maximizeBrowser();
-        LogUtils.logInfo("Browser launched: " + browserType);
     }
 
     private void maximizeBrowser() {
@@ -43,7 +51,9 @@ public class PlaywrightDriver {
 
     public Page getPage() {
         if (this.page == null) {
-            throw new IllegalStateException("Page is not initialized.");
+            String errorMessage = "Page is not initialized.";
+            LogUtils.logError(errorMessage);
+            throw new IllegalStateException(errorMessage);
         }
         return this.page;
     }

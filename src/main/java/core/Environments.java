@@ -18,6 +18,7 @@ public class Environments {
                 break;
             default:
                 LogUtils.logError("Invalid environment specified: " + currentEnvironment);
+                break;
         }
         return environment;
     }
